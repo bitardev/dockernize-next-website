@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    volumes:
+      - .:/app      # Mount the project directory to enable hot-reloading
+      - /app/node_modules # Avoid overwriting node_modules with the host's empty folder
+    command: ["npm", "run", "dev"]
